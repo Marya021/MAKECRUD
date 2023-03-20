@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="10dp"
+    app:cardPreventCornerOverlap="true"
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:clickable="true">
+        <!-- ImageVIew to display our Course Image -->
+
+
+        <!-- Text View to display Course Name -->
+        <TextView
+            android:id="@+id/tvid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="ID MEETING "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/perihal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvid"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="2dp"
+            android:text="PERIHAL "
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/nikpic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/perihal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="2dp"
+            android:text="NIKPIC"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/namapic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nikpic"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="2dp"
+            android:text="NAMAPIC"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tvtarget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/namapic"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="2dp"
+            android:text="TGL TARGET"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/ket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvtarget"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="2dp"
+            android:text="KETERANGAN HASIL "
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tvnik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ket"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="2dp"
+            android:text="NIK PIC OTORISASI"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvnamapic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvnik"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="2dp"
+            android:text="NAMA PIC OTORITASI"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tvket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvnamapic"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="2dp"
+            android:text="KETERANGAN"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tviddl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvket"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="2dp"
+            android:text="IDDTL MEETING"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
