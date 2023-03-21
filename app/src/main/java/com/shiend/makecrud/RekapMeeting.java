@@ -42,7 +42,7 @@ public class RekapMeeting extends AppCompatActivity {
     @BindView(R.id.etTanggal)
     EditText etTanggal;
 
-
+    private EditText tanggalMeeting;
     private ImageButton ibMasuk;
     private service services;
     private SimpleDateFormat dateFormat;
@@ -58,7 +58,7 @@ public class RekapMeeting extends AppCompatActivity {
 
         ButterKnife.bind(this, this);
         ibMasuk = findViewById(R.id.ibTanggalMasuk);
-
+        tanggalMeeting = findViewById(R.id.etTanggal);
         services = utils.getClient().create(service.class);
 
 //        judul = etJudul.getText().toString();
@@ -109,7 +109,7 @@ public class RekapMeeting extends AppCompatActivity {
 
 
         //dateFormat
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
         ibMasuk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,19 +119,6 @@ public class RekapMeeting extends AppCompatActivity {
                 blnMasuk = calendar.get(Calendar.MONTH);
                 tglMasuk = calendar.get(Calendar.DAY_OF_MONTH);
 
-
-                Button btn1=(Button)findViewById(R.id.button2);
-
-                btn1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent inte = new Intent(RekapMeeting.this, MainActivity.class);
-                        startActivity(inte);
-                    }
-                });
-
-
-
                 DatePickerDialog pickerDialog;
                 pickerDialog = new DatePickerDialog(RekapMeeting.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -140,7 +127,7 @@ public class RekapMeeting extends AppCompatActivity {
                         blnMasuk = month;
                         tglMasuk = dayOfMonth;
 
-                        etTanggal.setText(dateFormat.format(calendar.getTime()));
+                        tanggalMeeting.setText(thnMasuk + "-" + blnMasuk + "-" + tglMasuk);
                     }
                 }, thnMasuk, blnMasuk, tglMasuk);
                 pickerDialog.setTitle("Tanggal Masuk");

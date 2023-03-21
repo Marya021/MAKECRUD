@@ -1,8 +1,10 @@
 package com.shiend.makecrud;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RekapActivity extends AppCompatActivity {
+public class RekapActivity extends AppCompatActivity  {
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
     @BindView(R.id.recycleView)
@@ -27,6 +29,8 @@ public class RekapActivity extends AppCompatActivity {
     private service services;
     private List<Rekapresp> data;
     String perihal, tanggal,jenis;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +52,15 @@ public class RekapActivity extends AppCompatActivity {
             loadData();
         }
 
-//
+        Button btn1=(Button)findViewById(R.id.button3);
 
-//
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inte = new Intent(RekapActivity.this, RekapMeeting.class);
+                startActivity(inte);
+            }
+        });
 
     }
 

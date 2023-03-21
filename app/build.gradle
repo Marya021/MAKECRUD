@@ -48,6 +48,11 @@ dependencies {
         exclude group: 'stax', module: 'stax'
     }
 
+    //Itext PDF
+    implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.1'
+
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+
     //JakeWharton
     implementation 'com.jakewharton.threetenabp:threetenabp:1.3.1'
 

@@ -15,7 +15,7 @@
         android:layout_above="@+id/button2"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"></ListView>
+        android:layout_alignParentRight="true" />
 
     <EditText
         android:id="@+id/editText5"
