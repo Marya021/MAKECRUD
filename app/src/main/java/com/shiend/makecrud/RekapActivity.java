@@ -52,17 +52,7 @@ public class RekapActivity extends AppCompatActivity  {
             loadData();
         }
 
-        Button btn1=(Button)findViewById(R.id.button3);
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent inte = new Intent(RekapActivity.this, RekapMeeting.class);
-                startActivity(inte);
-            }
-        });
-
-    }
+      }
 
     private void loadData() {
         services.getdatarekap().enqueue(new Callback<MRekap>() {

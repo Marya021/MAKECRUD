@@ -1,6 +1,7 @@
 package com.shiend.makecrud;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,17 +40,16 @@ public class RekapMeeting extends AppCompatActivity {
     @BindView(R.id.btnRekap)
     Button btnRekap;
 
-//    @BindView(R.id.etJudul)
-//    EditText etJudul;
-
     @BindView(R.id.etTanggal)
     EditText etTanggal;
 
     private EditText tanggalMeeting;
     private ImageButton ibMasuk;
     private service services;
+    private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormat;
-
+    private Calendar calendar;
+    private SimpleDateFormat simpleDateFormat;
 
     private int tglMasuk;
     private int blnMasuk;
@@ -61,81 +64,91 @@ public class RekapMeeting extends AppCompatActivity {
         tanggalMeeting = findViewById(R.id.etTanggal);
         services = utils.getClient().create(service.class);
 
-//        judul = etJudul.getText().toString();
-//        tanggal = etTanggal.getText().toString();
-
         etJudul = findViewById(R.id.etJudul);
         btnserach = findViewById(R.id.btnserach);
 
+        setDate();
+        initData();
+        initClick();
 
         btnserach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent inte = new Intent(RekapMeeting.this, RekapActivity.class);
                 judul = etJudul.getText().toString();
-                tanggal=etTanggal.getText().toString();
-                inte.putExtra("judul",judul);
-                inte.putExtra("tanggal",tanggal);
-                inte.putExtra("jenis","1");
-//
-//                    Log.d( "tesssssssssssssss: ",judul);
-//                    Log.d( "tesssssssssssssss: ",tanggal);
+                tanggal = etTanggal.getText().toString();
+                inte.putExtra("judul", judul);
+                inte.putExtra("tanggal", tanggal);
+                inte.putExtra("jenis", "1");
                 startActivity(inte);
-                }
-            });
-
-//                inte.putExtra("judul",judul);
-//                inte.putExtra("tanggal",tanggal);
-//                     Log.d( "tessssssssssssss: ",judul );
-//
-//
-//                startActivity(inte);
-//
-//            }
-//        });
+            }
+        });
 
 
         btnRekap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Log.d( "tessssssssssssss: ",judul +"" +tanggal );
+                Log.d("tessssssssssssss: ", judul + "" + tanggal);
                 Intent inte = new Intent(RekapMeeting.this, RekapActivity.class);
-                inte.putExtra("jenis","2");
+                inte.putExtra("jenis", "2");
                 startActivity(inte);
 
             }
         });
 
 
-        //dateFormat
-        dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
         ibMasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                thnMasuk = calendar.get(Calendar.YEAR);
-                blnMasuk = calendar.get(Calendar.MONTH);
-                tglMasuk = calendar.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog pickerDialog;
-                pickerDialog = new DatePickerDialog(RekapMeeting.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        thnMasuk = year;
-                        blnMasuk = month;
-                        tglMasuk = dayOfMonth;
-
-                        tanggalMeeting.setText(thnMasuk + "-" + blnMasuk + "-" + tglMasuk);
-                    }
-                }, thnMasuk, blnMasuk, tglMasuk);
-                pickerDialog.setTitle("Tanggal Masuk");
-                pickerDialog.show();
+                datePickerDialog.show();
             }
         });
 
-
     }
 
+    private void initClick() {
+        ibMasuk.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    datePickerDialog.show();
+                } else {
+                    datePickerDialog.dismiss();
+                }
+            }
+        });
+    }
+
+    private void initData() {
+        calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("GMT+07:00"));
+        blnMasuk = calendar.get(Calendar.MONTH);
+        tglMasuk = calendar.get(Calendar.DATE);
+        thnMasuk = calendar.get(Calendar.YEAR);
+
+
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String DateNow = simpleDateFormat.format(calendar.getTime());
+    }
+
+    private void setDate() {
+        datePickerDialog = new DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Dialog_Alert,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        String formattedDate = simpleDateFormat.format(calendar.getTime());
+                        tanggalMeeting.setText(formattedDate);
+                    }
+                }, thnMasuk, blnMasuk, tglMasuk);
+        datePickerDialog.setCancelable(false);
+        datePickerDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                tanggalMeeting.clearFocus();
+            }
+        });
+    }
 }
