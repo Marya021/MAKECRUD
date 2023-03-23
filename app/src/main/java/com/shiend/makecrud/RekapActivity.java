@@ -1,7 +1,13 @@
 package com.shiend.makecrud;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +19,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
+
+import java.io.File;
 import java.util.List;
 
 import butterknife.BindView;
@@ -21,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RekapActivity extends AppCompatActivity  {
+public class RekapActivity extends AppCompatActivity {
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
     @BindView(R.id.recycleView)
@@ -29,6 +38,7 @@ public class RekapActivity extends AppCompatActivity  {
     private service services;
     private List<Rekapresp> data;
     String perihal, tanggal,jenis;
+
 
 
 
@@ -53,6 +63,9 @@ public class RekapActivity extends AppCompatActivity  {
         }
 
       }
+
+
+
 
     private void loadData() {
         services.getdatarekap().enqueue(new Callback<MRekap>() {
@@ -112,5 +125,5 @@ public class RekapActivity extends AppCompatActivity  {
     }
 
 
-
 }
+
